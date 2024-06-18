@@ -56,6 +56,35 @@ seven_button = tkinter.Button(button_frame, text=" 7 ", font=button_font, bg='bl
 eight_button = tkinter.Button(button_frame, text=" 8 ", font=button_font, bg='black', fg='white')
 nine_button = tkinter.Button(button_frame, text=" 9 ", font=button_font, bg='black', fg='white')
 
+#First row
+clear_button.grid(row=0, column=0)
+quit_button.grid(row=0, column=1)
+#Second row
+inverse_button.grid(row=1, column=0)
+square_button.grid(row=1, column=1)
+exponent_button.grid(row=1, column=2)
+divide_button.grid(row=1, column=3)
+#third row
+seven_button.grid(row=2, column=0)
+eight_button.grid(row=2, column=1)
+nine_button.grid(row=2, column=2)
+times_button.grid(row=2, column=3)
+#Fourth row
+four_button.grid(row=3, column=0)
+five_button.grid(row=3, column=1)
+six_button.grid(row=3, column=2)
+minus_button.grid(row=3, column=3)
+#Fifth row
+one_button.grid(row=4, column=0)
+two_button.grid(row=4, column=1)
+three_button.grid(row=4, column=2)
+add_button.grid(row=4, column=3)
+#Sixth row
+negate_button.grid(row=5, column=0)
+zero_button.grid(row=5, column=1)
+decimal_button.grid(row=5, column=2)
+equal_button.grid(row=5, column=3)
+
 
 #Run app
 root.mainloop()
