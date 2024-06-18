@@ -18,6 +18,11 @@ display_font = ('Arial', 30)
 #Define funcitons
 
 #Define layout
+#Define frames
+display_frame = tkinter.LabelFrame(root)
+button_frame = tkinter.LabelFrame(root)
+display_frame.pack()
+button_frame.pack()
 
 #Run app
 root.mainloop()
