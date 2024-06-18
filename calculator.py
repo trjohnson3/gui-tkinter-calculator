@@ -1,5 +1,6 @@
 #calculator
 import tkinter
+from tkinter import RIGHT
 
 #Define window
 root = tkinter.Tk()
@@ -23,6 +24,11 @@ display_frame = tkinter.LabelFrame(root)
 button_frame = tkinter.LabelFrame(root)
 display_frame.pack()
 button_frame.pack()
+
+#Layout of display frame
+display = tkinter.Entry(display_frame, width=50, borderwidth=5, font=display_font,
+                        bg=white_green, justify=RIGHT)
+display.pack(padx=5, pady=5)
 
 #Run app
 root.mainloop()
