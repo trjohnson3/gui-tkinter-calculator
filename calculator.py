@@ -33,7 +33,7 @@ display.pack(padx=5, pady=5)
 #Layout of button frame
 #Function buttons
 clear_button = tkinter.Button(button_frame, text="Clear", font=button_font, bg=dark_green)
-quit_button = tkinter.Button(button_frame, text="Quit", font=button_font, bg=dark_green)
+quit_button = tkinter.Button(button_frame, text="Quit", font=button_font, bg=dark_green, command=root.destroy)
 inverse_button = tkinter.Button(button_frame, text="1/x", font=button_font, bg=light_green)
 square_button = tkinter.Button(button_frame, text="x^2", font=button_font, bg=light_green)
 exponent_button = tkinter.Button(button_frame, text="x^n", font=button_font, bg=light_green)
