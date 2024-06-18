@@ -63,6 +63,20 @@ def get_result():
         value = float(first_number) ** float(second_number)
     display.delete(0, END)
     display.insert(END, value)
+    #Reenable all buttons
+    enable_all_buttons()
+
+def enable_all_buttons():
+    '''reenables any buttons that had been disabled'''
+    decimal_button.config(state=NORMAL)
+    inverse_button.config(state=NORMAL)
+    square_button.config(state=NORMAL)
+    exponent_button.config(state=NORMAL)
+    times_button.config(state=NORMAL)
+    divide_button.config(state=NORMAL)
+    minus_button.config(state=NORMAL)
+    add_button.config(state=NORMAL)
+
 
 
 #GUI layout
