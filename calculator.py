@@ -1,6 +1,6 @@
 #calculator
 import tkinter
-from tkinter import RIGHT
+from tkinter import RIGHT, END, DISABLED, NORMAL
 
 #Define window
 root = tkinter.Tk()
@@ -17,6 +17,53 @@ button_font = ('Arial', 18)
 display_font = ('Arial', 30)
 
 #Define funcitons
+def enter_number(number):
+    '''display number or decimal from button'''
+    #Insert number or decimal to end of display
+    display.insert(END, number)
+    #If decimal was entered, disable button
+    if '.' in display.get():
+        decimal_button.config(state=DISABLED)
+
+def operate(operator):
+    '''store the first number of express and operation'''
+    global first_number
+    global operation
+
+    #Store first number and operation
+    operation = operator
+    first_number = display.get()
+    display.delete(0, END)
+    #Disable all operations buttons except =
+    add_button.config(state=DISABLED)
+    minus_button.config(state=DISABLED)
+    times_button.config(state=DISABLED)
+    divide_button.config(state=DISABLED)
+    inverse_button.config(state=DISABLED)
+    square_button.config(state=DISABLED)
+    exponent_button.config(state=DISABLED)
+    #renable decimal button
+    decimal_button.config(state=NORMAL)
+
+def get_result():
+    '''display results of operation'''
+    second_number = display.get()
+    if operation == 'add':
+        value = float(first_number) + float(second_number)
+    elif operation == 'minus':
+        value = float(first_number) - float(second_number)
+    elif operation == 'divide':
+        if second_number == '0':
+            value = 'Error'
+        else:
+            value = float(first_number) / float(second_number)
+    elif operation == 'times':
+        value = float(first_number) * float(second_number)
+    elif operation == 'exponent':
+        value = float(first_number) ** float(second_number)
+    display.delete(0, END)
+    display.insert(END, value)
+
 
 #GUI layout
 #Define frames
@@ -33,28 +80,46 @@ display.pack(padx=5, pady=5)
 #Layout of button frame
 #Function buttons
 clear_button = tkinter.Button(button_frame, text="Clear", font=button_font, bg=dark_green)
-quit_button = tkinter.Button(button_frame, text="Quit", font=button_font, bg=dark_green, command=root.destroy)
+quit_button = tkinter.Button(button_frame, text="Quit", font=button_font, bg=dark_green,
+                             command=root.destroy)
 inverse_button = tkinter.Button(button_frame, text="1/x", font=button_font, bg=light_green)
 square_button = tkinter.Button(button_frame, text="x^2", font=button_font, bg=light_green)
-exponent_button = tkinter.Button(button_frame, text="x^n", font=button_font, bg=light_green)
-divide_button = tkinter.Button(button_frame, text="/", font=button_font, bg=light_green)
-times_button = tkinter.Button(button_frame, text="*", font=button_font, bg=light_green)
-add_button = tkinter.Button(button_frame, text="+", font=button_font, bg=light_green)
-minus_button = tkinter.Button(button_frame, text="-", font=button_font, bg=light_green)
-equal_button = tkinter.Button(button_frame, text="=", font=button_font, bg=dark_green)
-decimal_button = tkinter.Button(button_frame, text=".", font=button_font, bg='black', fg='white')
+exponent_button = tkinter.Button(button_frame, text="x^n", font=button_font, bg=light_green,
+                                 command=lambda:operate('exponent'))
+divide_button = tkinter.Button(button_frame, text="/", font=button_font, bg=light_green,
+                                 command=lambda:operate('divide'))
+times_button = tkinter.Button(button_frame, text="*", font=button_font, bg=light_green,
+                                 command=lambda:operate('times'))
+add_button = tkinter.Button(button_frame, text="+", font=button_font, bg=light_green,
+                                 command=lambda:operate('add'))
+minus_button = tkinter.Button(button_frame, text="-", font=button_font, bg=light_green,
+                                 command=lambda:operate('minus'))
+equal_button = tkinter.Button(button_frame, text="=", font=button_font, bg=dark_green,
+                              command=get_result)
+decimal_button = tkinter.Button(button_frame, text=".", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('.'))
 negate_button = tkinter.Button(button_frame, text="+/-", font=button_font, bg='black', fg='white')
 #Number buttons
-zero_button = tkinter.Button(button_frame, text="0", font=button_font, bg='black', fg='white')
-one_button = tkinter.Button(button_frame, text=" 1", font=button_font, bg='black', fg='white')
-two_button = tkinter.Button(button_frame, text="2", font=button_font, bg='black', fg='white')
-three_button = tkinter.Button(button_frame, text="3", font=button_font, bg='black', fg='white')
-four_button = tkinter.Button(button_frame, text="4", font=button_font, bg='black', fg='white')
-five_button = tkinter.Button(button_frame, text="5", font=button_font, bg='black', fg='white')
-six_button = tkinter.Button(button_frame, text="6", font=button_font, bg='black', fg='white')
-seven_button = tkinter.Button(button_frame, text="7", font=button_font, bg='black', fg='white')
-eight_button = tkinter.Button(button_frame, text="8", font=button_font, bg='black', fg='white')
-nine_button = tkinter.Button(button_frame, text="9", font=button_font, bg='black', fg='white')
+zero_button = tkinter.Button(button_frame, text="0", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('0'))
+one_button = tkinter.Button(button_frame, text=" 1", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('1'))
+two_button = tkinter.Button(button_frame, text="2", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('2'))
+three_button = tkinter.Button(button_frame, text="3", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('3'))
+four_button = tkinter.Button(button_frame, text="4", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('4'))
+five_button = tkinter.Button(button_frame, text="5", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('5'))
+six_button = tkinter.Button(button_frame, text="6", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('6'))
+seven_button = tkinter.Button(button_frame, text="7", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('7'))
+eight_button = tkinter.Button(button_frame, text="8", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('8'))
+nine_button = tkinter.Button(button_frame, text="9", font=button_font, bg='black', fg='white',
+                             command=lambda:enter_number('9'))
 
 #First row
 clear_button.grid(row=0, column=0, columnspan=2, sticky='WE')
