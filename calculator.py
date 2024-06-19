@@ -100,6 +100,12 @@ def square():
     display.delete(0, END)
     display.insert(END, value)
 
+def negate():
+    '''Negate a given number'''
+    value = -1 * float(display.get())
+    display.delete(0, END)
+    display.insert(END, value)
+
 
 
 #GUI layout
@@ -138,7 +144,8 @@ equal_button = tkinter.Button(button_frame, text="=", font=button_font, bg=dark_
                               command=get_result)
 decimal_button = tkinter.Button(button_frame, text=".", font=button_font, bg='black', fg='white',
                              command=lambda:enter_number('.'))
-negate_button = tkinter.Button(button_frame, text="+/-", font=button_font, bg='black', fg='white')
+negate_button = tkinter.Button(button_frame, text="+/-", font=button_font, bg='black', fg='white',
+                               command=negate)
 #Number buttons
 zero_button = tkinter.Button(button_frame, text="0", font=button_font, bg='black', fg='white',
                              command=lambda:enter_number('0'))
