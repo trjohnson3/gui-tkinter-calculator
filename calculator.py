@@ -77,6 +77,29 @@ def enable_all_buttons():
     minus_button.config(state=NORMAL)
     add_button.config(state=NORMAL)
 
+def clear():
+    '''clear the display and reenable all buttons'''
+    display.delete(0, END)
+    enable_all_buttons()
+
+def inverse():
+    '''display the inverse of a number'''
+    #Do not allow the inverse of 0
+    number = display.get()
+    if number == '0':
+        value = 'Error'
+    else:
+        value = 1 / float(number)
+    display.delete(0, END)
+    display.insert(END, value)
+
+def square():
+    '''display the square of a number'''
+    number = display.get()
+    value = float(number) * float(number)
+    display.delete(0, END)
+    display.insert(END, value)
+
 
 
 #GUI layout
@@ -93,11 +116,14 @@ display.pack(padx=5, pady=5)
 
 #Layout of button frame
 #Function buttons
-clear_button = tkinter.Button(button_frame, text="Clear", font=button_font, bg=dark_green)
+clear_button = tkinter.Button(button_frame, text="Clear", font=button_font, bg=dark_green,
+                              command=clear)
 quit_button = tkinter.Button(button_frame, text="Quit", font=button_font, bg=dark_green,
                              command=root.destroy)
-inverse_button = tkinter.Button(button_frame, text="1/x", font=button_font, bg=light_green)
-square_button = tkinter.Button(button_frame, text="x^2", font=button_font, bg=light_green)
+inverse_button = tkinter.Button(button_frame, text="1/x", font=button_font, bg=light_green,
+                                command=inverse)
+square_button = tkinter.Button(button_frame, text="x^2", font=button_font, bg=light_green,
+                               command=square)
 exponent_button = tkinter.Button(button_frame, text="x^n", font=button_font, bg=light_green,
                                  command=lambda:operate('exponent'))
 divide_button = tkinter.Button(button_frame, text="/", font=button_font, bg=light_green,
